@@ -60,6 +60,7 @@ alias gcl='git clone'
 alias gd='git diff'
 alias gc='git commit -am'
 alias ga='git add'
+alias gu='git add -u'
 alias gp='git push -u origin master'
 
 alias brc='vim ~/.bash/.bashrc'
