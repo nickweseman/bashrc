@@ -46,3 +46,12 @@ alias gc='git commit -am'
 alias ga='git add'
 alias gp='git push -u origin master'
 
+alias brc='vim ~/.bash/.bashrc'
+
+# don't put duplicate lines in the history or force ignoredups and ignorespace                                                                                                                                 
+HISTCONTROL=ignoredups:ignorespace 
+
+# append to the history file, don't overwrite it    
+shopt -s histappend   
+
+
