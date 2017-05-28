@@ -10,9 +10,6 @@ PS1="\w\$ "
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-alias gitlog='git log --graph --oneline --decorate --all'
-alias gitlog1='git log --pretty=oneline'
-
 # added by Miniconda3 4.3.11 installer
 export PATH="/home/nick/programs/miniconda3/bin:$PATH"
 
@@ -35,6 +32,9 @@ alias xshutdown="killall Xvfb"
 
 # Use Vi commands on the bash command line after hitting Esc
 set -o vi
+
+alias gitlog='git log --graph --oneline --decorate --all'
+alias gitlog1='git log --pretty=oneline'
 
 alias gss='gssproxy2 -ef --'
 alias gp='gssproxy2 -ef -- git pull'
