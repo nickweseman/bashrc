@@ -3,35 +3,27 @@
 # Use Vi commands on the bash command line after hitting Esc
 set -o vi
 
-# don't put duplicate lines in the history or force ignoredups and ignorespace                                                                                                                                 
+# don't put duplicate lines in the history or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace 
 
-# append to the history file, don't overwrite it    
-shopt -s histappend   
+export HISTIGNORE="&:ls:exit:brc:sbrc:trc:vrc"
+
+# make saved history huge
+export HISTFILESIZE=20000
+export HISTSIZE=10000
+
+# append to the history file, don't overwrite it
+shopt -s histappend
 
 # set prompt to just working directory
-PS1="\w\$ "
+PS1="\w$ "
 
 # prevent Ctrl + S from hanging terminal
 stty ixany
 stty ixoff -ixon
 
-# }}}
-
-# Path {{{
-
-export dd='/media/sf_D_DRIVE'
-export cc='/media/sf_C_DRIVE'
-export hh='/media/sf_H_DRIVE'
-export ii='/media/sf_I_DRIVE'
-
-export ECLIPSE_HOME="/home/nick/programs/eclipse"
-
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
-# added by Miniconda3 4.3.11 installer
-export PATH="/home/nick/programs/miniconda3/bin:$PATH"
 
 # Set to 256 colors if called within a tmux session
 [[ $TMUX != "" ]] && export TERM="screen-256color"
@@ -41,6 +33,7 @@ export PATH="/home/nick/programs/miniconda3/bin:$PATH"
 # Aliases {{{
 
 alias vi=vim
+alias v=vim
 
 alias eclimxstart="Xvfb :1 -screen 0 1024x768x24 & DISPLAY=:1 $ECLIPSE_HOME/eclimd -b &>/dev/null &"
 alias eclimstart="DISPLAY=:1 $ECLIPSE_HOME/eclimd &"
@@ -66,6 +59,107 @@ alias gp='git push -u origin master'
 alias brc='vim ~/.bash/.bashrc'
 alias vrc='vim ~/.vim/vimrc'
 alias trc='vim ~/.tmux/.tmux.conf'
+alias sbrc='source ~/.bashrc'
+
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
+
+alias mkdir='mkdir -pv'
+
+alias c='clear'
+alias h='history'
+
+alias path='echo -e ${PATH//:/\\n}'
+
+alias ping='ping -c 2'
+
+alias e='echo'
+
+alias df='df -h'
+
+alias src='cd ~/src'
+
+alias fn='find . -name'
+
+alias d='dirs -v'
+
+alias x='exit'
+
+alias r='reset'
+
+alias rd='rmdir'
+
+#protect myself
+alias cp='cp -iv'
+alias mv='mv -iv'
+
+alias cls='clear;ls'
+
+# }}}
+
+# Custom Functions {{{
+
+# make directory and then move there
+mcd () {
+    mkdir -pv $1
+    cd $1
+}
+
+# extract any file
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+    return 1
+ else
+    for n in $@
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) 
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *)
+                         echo "extract: '$n' - unknown archive method"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - file does not exist"
+          return 1
+      fi
+    done
+fi
+}
+
+# kill processes by name
+kp () {
+  ps aux | grep $1 > /dev/null
+  mypid=$(pidof $1)
+  if [ "$mypid" != "" ]; then
+    kill -9 $(pidof $1)
+    if [[ "$?" == "0" ]]; then
+      echo "PID $mypid ($1) killed."
+    fi
+  else
+    echo "None killed."
+  fi
+  return;
+}
 
 # }}}
 
