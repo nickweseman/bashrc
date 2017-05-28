@@ -4,7 +4,7 @@
 set -o vi
 
 # don't put duplicate lines in the history or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace 
+export HISTCONTROL=ignoreboth:erasedups
 
 export HISTIGNORE="&:ls:exit:brc:sbrc:trc:vrc"
 
@@ -14,6 +14,9 @@ export HISTSIZE=10000
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+# save multiline commands to the history as one command
+shopt -s cmdhist
 
 # set prompt to just working directory
 PS1="\w$ "
@@ -27,6 +30,9 @@ export EDITOR="$VISUAL"
 
 # Set to 256 colors if called within a tmux session
 [[ $TMUX != "" ]] && export TERM="screen-256color"
+
+# Set ls colors
+eval `dircolors ~/.bash/dircolors.ansi-dark`
 
 # }}}
 
@@ -63,6 +69,8 @@ alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
 alias mkdir='mkdir -pv'
+alias t='tmux'
+alias l='ls'
 alias c='clear'
 alias h='history'
 alias path='echo -e ${PATH//:/\\n}'
@@ -70,7 +78,6 @@ alias ping='ping -c 2'
 alias e='echo'
 alias df='df -h'
 alias src='cd ~/src'
-alias fn='find . -name'
 alias d='dirs -v'
 alias x='exit'
 alias r='reset'
@@ -88,6 +95,11 @@ alias cls='clear;ls'
 mcd () {
     mkdir -pv $1
     cd $1
+}
+
+# find shorthand
+function f() {
+  find . -name "$1" 2>&1 | grep -v 'Permission denied'
 }
 
 # extract any file
