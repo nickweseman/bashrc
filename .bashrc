@@ -34,17 +34,14 @@ export EDITOR="$VISUAL"
 
 alias vi=vim
 alias v=vim
-
 alias eclimxstart="Xvfb :1 -screen 0 1024x768x24 & DISPLAY=:1 $ECLIPSE_HOME/eclimd -b &>/dev/null &"
 alias eclimstart="DISPLAY=:1 $ECLIPSE_HOME/eclimd &"
 alias xstart="Xvfb :1 -screen 0 1024x768x24 &"
-
 alias eclimxshutdown="$ECLIPSE_HOME/eclim -command shutdown ; killall Xvfb"
 alias eclimshutdown="$ECLIPSE_HOME/eclim -command shutdown"
 alias xshutdown="killall Xvfb"
 alias gitlog='git log --graph --oneline --decorate --all'
 alias gitlog1='git log --pretty=oneline'
-
 alias gss='gssproxy2 -ef --'
 alias gpl='git pull'
 alias gf='git fetch'
@@ -55,48 +52,32 @@ alias gc='git commit -am'
 alias ga='git add'
 alias gu='git add -u'
 alias gp='git push -u origin master'
-
 alias brc='vim ~/.bash/.bashrc'
 alias vrc='vim ~/.vim/vimrc'
 alias trc='vim ~/.tmux/.tmux.conf'
 alias sbrc='source ~/.bashrc'
-
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 alias ......='cd ../../../../../'
-
 alias mkdir='mkdir -pv'
-
 alias c='clear'
 alias h='history'
-
 alias path='echo -e ${PATH//:/\\n}'
-
 alias ping='ping -c 2'
-
 alias e='echo'
-
 alias df='df -h'
-
 alias src='cd ~/src'
-
 alias fn='find . -name'
-
 alias d='dirs -v'
-
 alias x='exit'
-
 alias r='reset'
-
 alias rd='rmdir'
-
 #protect myself
 alias cp='cp -iv'
 alias mv='mv -iv'
-
 alias cls='clear;ls'
 
 # }}}
