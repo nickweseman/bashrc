@@ -44,5 +44,5 @@ alias gcl='gssproxy2 -ef -- git clone'
 alias gd='git diff'
 alias gc='git commit -am'
 alias ga='git add'
-
+alias gp='git push -u origin master'
 
