@@ -38,7 +38,7 @@ eval `dircolors ~/.bash/dircolors.ansi-dark`
 alias vi=vim
 alias v=vim
 alias eclimxstart="Xvfb :1 -screen 0 1024x768x24 & DISPLAY=:1 $ECLIPSE_HOME/eclimd -b &>/dev/null &"
-alias eclimstart="DISPLAY=:1 $ECLIPSE_HOME/eclimd &"
+alias eclimstart="$ECLIPSE_HOME/eclimd &" # need to prepend DISPLAY=:1 if using Xvfb (now it's already set in .profile)
 alias xstart="Xvfb :1 -screen 0 1024x768x24 &"
 alias eclimxshutdown="$ECLIPSE_HOME/eclim -command shutdown ; killall Xvfb"
 alias eclimshutdown="$ECLIPSE_HOME/eclim -command shutdown"
@@ -80,7 +80,6 @@ alias d='dirs -v'
 alias x='exit'
 alias r='reset'
 alias rd='rmdir'
-#protect myself
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias cls='clear;ls'

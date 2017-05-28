@@ -14,6 +14,8 @@ export PATH="/home/nick/programs/miniconda3/bin:$PATH"
 # same on VM
 PS1="\w$ "
 
+export DISPLAY=:1
+
 # }}}
 
 # put this on the last line
