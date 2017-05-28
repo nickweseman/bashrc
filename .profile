@@ -10,6 +10,10 @@ export ECLIPSE_HOME="/home/nick/programs/eclipse"
 # added by Miniconda3 4.3.11 installer
 export PATH="/home/nick/programs/miniconda3/bin:$PATH"
 
+# set prompt to just working directory since username & hostname are always the
+# same on VM
+PS1="\w$ "
+
 # }}}
 
 # put this on the last line

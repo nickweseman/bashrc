@@ -18,9 +18,6 @@ shopt -s histappend
 # save multiline commands to the history as one command
 shopt -s cmdhist
 
-# set prompt to just working directory
-PS1="\w$ "
-
 # prevent Ctrl + S from hanging terminal
 stty ixany
 stty ixoff -ixon
@@ -31,7 +28,7 @@ export EDITOR="$VISUAL"
 # Set to 256 colors if called within a tmux session
 [[ $TMUX != "" ]] && export TERM="screen-256color"
 
-# Set ls colors
+# Set ls colors.  See:  https://github.com/seebi/dircolors-solarized
 eval `dircolors ~/.bash/dircolors.ansi-dark`
 
 # }}}
@@ -71,6 +68,7 @@ alias ......='cd ../../../../../'
 alias mkdir='mkdir -pv'
 alias t='tmux'
 alias l='ls'
+alias lal='ls -al'
 alias c='clear'
 alias h='history'
 alias path='echo -e ${PATH//:/\\n}'
