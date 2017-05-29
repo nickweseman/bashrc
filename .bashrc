@@ -6,8 +6,6 @@ set -o vi
 # don't put duplicate lines in the history or force ignoredups and ignorespace
 export HISTCONTROL=ignoreboth:erasedups
 
-export HISTIGNORE="&:ls:exit:brc:sbrc:trc:vrc"
-
 # make saved history huge
 export HISTFILESIZE=20000
 export HISTSIZE=10000
@@ -153,6 +151,6 @@ kp () {
 
 # }}}
 
-
+# End {{{
 # put this on the last line
-# vim:foldmethod=marker:foldlevel=0
+# }}} vim:foldmethod=marker:foldlevel=0
