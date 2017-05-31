@@ -66,6 +66,7 @@ alias ......='cd ../../../../../'
 alias mkdir='mkdir -pv'
 alias t='tmux'
 alias l='ls'
+alias ll='ls -l'
 alias lal='ls -al'
 alias c='clear'
 alias h='history'
@@ -81,6 +82,7 @@ alias rd='rmdir'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias cls='clear;ls'
+alias fif="echo grep -rnw '/path/to/somewhere/' -e \"pattern\"" # or just use Ag
 
 # }}}
 
@@ -147,6 +149,19 @@ kp () {
     echo "None killed."
   fi
   return;
+}
+
+# add item to $PATH if not already in, add "after" param to add to the end
+# (add to the beginning): addtopath /sbin/
+# (add to the end): addtopath /usr/sbin/ after
+addtopath () {
+    if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)" ; then
+        if [ "$2" = "after" ] ; then
+            PATH="$PATH:$1"
+        else
+            PATH="$1:$PATH"
+        fi
+    fi
 }
 
 # }}}

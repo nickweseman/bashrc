@@ -8,7 +8,7 @@ export ii='/media/sf_I_DRIVE'
 export ECLIPSE_HOME="/home/nick/programs/eclipse"
 
 # added by Miniconda3 4.3.11 installer
-export PATH="/home/nick/programs/miniconda3/bin:$PATH"
+addtopath "/home/nick/programs/miniconda3/bin"
 
 # set prompt to just working directory since username & hostname are always the
 # same on VM
