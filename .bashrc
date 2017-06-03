@@ -84,6 +84,22 @@ alias mv='mv -iv'
 alias cls='clear;ls'
 alias fif="echo grep -rnw '/path/to/somewhere/' -e \"pattern\"" # or just use Ag
 
+alias djangocmds="echo 'django-admin startproject mysite
+manage.py runserver 192.168.1.140:8000 (if no address passed, default is 127.0.0.1:8000)
+manage.py startapp blog
+manage.py makemigrations blog
+manage.py sqlmigrate blog 0001 (migration id in migrations folder) - (to see the sql)
+manage.py migrate blog
+manage.py collectstatic
+manage.py shell
+manage.py createsuperuser
+manage.py test blog (have not tried this yet)
+https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata
+manage.py dumpdata --indent 4 > db.json
+manage.py dumpdata --indent 4 admin > admin.json (admin app only)
+manage.py dumpdata --indent 4 --exclude auth.permission --exclude contenttypes > db.json (to allow for a full database restore)
+manage.py loaddata db.json'" 
+
 # }}}
 
 # Custom Functions {{{
