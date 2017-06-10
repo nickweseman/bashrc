@@ -98,7 +98,7 @@ https://coderwall.com/p/mvsoyg/django-dumpdata-and-loaddata
 manage.py dumpdata --indent 4 > db.json
 manage.py dumpdata --indent 4 admin > admin.json (admin app only)
 manage.py dumpdata --indent 4 --exclude auth.permission --exclude contenttypes > db.json (to allow for a full database restore)
-manage.py loaddata db.json'" 
+manage.py loaddata db.json'"
 
 # }}}
 
@@ -152,19 +152,9 @@ function extract {
 fi
 }
 
-# kill processes by name
+# kill processes by name (only applies to current shell)
 kp () {
-  ps aux | grep $1 > /dev/null
-  mypid=$(pidof $1)
-  if [ "$mypid" != "" ]; then
-    kill -9 $(pidof $1)
-    if [[ "$?" == "0" ]]; then
-      echo "PID $mypid ($1) killed."
-    fi
-  else
-    echo "None killed."
-  fi
-  return;
+    ps -f | grep $1 | grep -v grep | awk '{print $2}' | xargs kill
 }
 
 # add item to $PATH if not already in, add "after" param to add to the end
