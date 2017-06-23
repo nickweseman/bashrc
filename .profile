@@ -10,6 +10,7 @@ export ECLIPSE_HOME="/home/nick/programs/eclipse"
 # added by Miniconda3 4.3.11 installer
 addtopath "/home/nick/programs/miniconda3/bin"
 addtopath "."
+addtopath "/home/nick/.npm-packages/bin"
 
 # set prompt to just working directory since username & hostname are always the
 # same on VM
